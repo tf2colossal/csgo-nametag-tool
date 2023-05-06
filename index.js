@@ -7,10 +7,10 @@ import { Items, defaultItems, english } from "./helpers/Items.js";
 
 const steam = new SteamUser();
 const protobufs = new ProtobufJS.Root().loadSync([
-	path.join(process.cwd(), "protobufs", "csgo", "base_gcmessages.proto"),
-	path.join(process.cwd(), "protobufs", "csgo", "gcsystemmsgs.proto"),
-	path.join(process.cwd(), "protobufs", "csgo", "gcsdk_gcmessages.proto"),
-	path.join(process.cwd(), "protobufs", "csgo", "econ_gcmessages.proto")
+	path.join(process.cwd(), "protobufs", "tf2", "base_gcmessages.proto"),
+	path.join(process.cwd(), "protobufs", "tf2", "gcsystemmsgs.proto"),
+	path.join(process.cwd(), "protobufs", "tf2", "gcsdk_gcmessages.proto"),
+	path.join(process.cwd(), "protobufs", "tf2", "econ_gcmessages.proto")
 ], {
 	keepCase: true
 });
@@ -108,7 +108,7 @@ steam.on("user", (sid, user) => {
 		return;
 	}
 
-	console.log("Connecting to CSGO backend...");
+	console.log("Connecting to TF2 backend...");
 
 	steam.gamesPlayed([730]);
 	clearInterval(gcConnectInterval);
@@ -202,7 +202,7 @@ gcListeners.add("EGCBaseClientMsg.k_EMsgGCClientWelcome", "CMsgClientWelcome", a
 	gcConnectInterval = null;
 
 	if (gcFirstConnect) {
-		console.log(`Connected to CSGO backend, server time: ${new Date(data.rtime32_gc_welcome_timestamp * 1000).toLocaleString()}`);
+		console.log(`Connected to TF2 backend, server time: ${new Date(data.rtime32_gc_welcome_timestamp * 1000).toLocaleString()}`);
 		gcFirstConnect = false;
 	}
 
@@ -340,7 +340,7 @@ async function getUserRenameInput(haveNameTags) {
 		console.log("WARNING: Continuing will result in one of your name tags being used up!");
 		console.log("WARNING: If you do not wish to do this stop NOW by pressing CTRL + C or closing the window!");
 		console.log("WARNING: The developer(s) of this tool are NOT responsible for any lost name tags, items, or money!");
-		console.log("WARNING: CSGO's backend might restrict you from entering certain things or go above certain limits this tool cannot account for!");
+		console.log("WARNING: TF2's backend might restrict you from entering certain things or go above certain limits this tool cannot account for!");
 		console.log("WARNING: Always test on a Storage Unit first, they have infinite free name changes!");
 		doItemRename(parseInt(itemSelection.defIndex));
 	} else if (itemSelection.itemLink) {
@@ -364,7 +364,7 @@ async function getUserRenameInput(haveNameTags) {
 			console.log("WARNING: Continuing will result in one of your name tags being used up!");
 			console.log("WARNING: If you do not wish to do this stop NOW by pressing CTRL + C or closing the window!");
 			console.log("WARNING: The developer(s) of this tool are NOT responsible for any lost name tags, items, or money!");
-			console.log("WARNING: CSGO's backend might restrict you from entering certain things or go above certain limits this tool cannot account for!");
+			console.log("WARNING: TF2's backend might restrict you from entering certain things or go above certain limits this tool cannot account for!");
 			console.log("WARNING: Always test on a Storage Unit first, they have infinite free name changes!");
 		}
 		doItemRename(itemID);
@@ -381,7 +381,7 @@ m_JobIDTarget     (uint64) - 18446744073709551615 [Always k_GIDNil]
 // The above is part of the header, auto-filled for us by steam-user
 m_unToolItemID    (uint64) - 0                    [The tool item ID used to rename this item with, 0 for Storage Units]
 m_unSubjectItemID (uint64) - 17242456691          [The item we are changing]
-m_bDescription    (bool)   - 0                    [If the tool is a description tag or not, does not exist in CSGO at the current moment]
+m_bDescription    (bool)   - 0                    [If the tool is a description tag or not, does not exist in TF2 at the current moment]
 *Extra data*      (string) - The actual name we are giving this item, null terminated
 
 The way renaming works for a default item, using a non-protobuf message of ID 1019 (k_EMsgGCNameBaseItem - MsgGCNameBaseItem_t)
@@ -392,7 +392,7 @@ m_JobIDTarget            (uint64) - 18446744073709551615 [Always k_GIDNil]
 // The above is part of the header, auto-filled for us by steam-user
 m_unToolItemID           (uint64) - 17242421651          [The tool item ID used to rename this item with, 0 for Storage Units]
 m_unBaseItemDefinitionID (uint32) - 7                    [The item we are changing]
-m_bDescription           (bool)   - 0                    [If the tool is a description tag or not, does not exist in CSGO at the current moment]
+m_bDescription           (bool)   - 0                    [If the tool is a description tag or not, does not exist in TF2 at the current moment]
 *Extra data*             (string) - The actual name we are giving this item, null terminated
 */
 
