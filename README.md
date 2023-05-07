@@ -13,7 +13,7 @@ Its a random guy talking about it to ohnePixel, I thought it was dumb and nothin
 1. Download [NodeJS](https://nodejs.org/) and install/update it (**Version 18.0.0 or higher**)
 2. Download [Git](https://git-scm.com/) and install it
 3. Open a command prompt and enter `git clone https://github.com/tf2colossal/tf2-nametag-tool.git --recursive`
-4. Enter the just downloaded folder using `tf2-nametag-tool`
+4. Enter the just downloaded folder using `cd tf2-nametag-tool`
 5. Download the required dependencies using `npm ci`
 6. Run the program using `node index.js`
 7. Follow the on-screen instructions
